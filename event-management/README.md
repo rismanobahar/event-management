@@ -42,45 +42,12 @@ This project will using some stacks as follows:
 ## Tinker Commands
 
 - **TINKER** - `$books = \App\Models\Book::with('reviews')->find(1);` : to create a variable called boon and then find certain book and review.
-- **TINKER** - `$review = $book->reviews;` : create a variable name $review and then find all the books review.
-- **TINKER** - `$book = \App\Models\Book::find(1);` : find the first book.
-- **TINKER** - `$books = \App\Models\Book::with('reviews')->take(3)->get();` : find the first 3 books and reviews.
-- **TINKER** - `$book->load('reviews');` : to load the reviews data.
-- **TINKER** - `$review = new \App\Models\Review();` : create new object that is review.
-- **TINKER** - `$review->review = 'This was fine';` : defining this String into database.
-- **TINKER** - `$review->rating = 3;` : defining this number into database.
-- **TINKER** - `$book->reviews()->save($review);` : inserting the data into database.
-- **TINKER** - `$review = $book->reviews()->create(['review' => 'Sample review', 'rating' => 5]);` : insert the review and rating object after making these column fillable in the model.
-- **TINKER** - `$review = \App\Models\Review::find(1);` : find review in id 1.
-- **TINKER** - `$review->book;` : find the book column via review properties.
-- **TINKER** - `$book2 = \App\Models\Book:find(2);` : create a variable $book2 and find the second row book data.
-- **TINKER** - `$book2->reviews()->save($review);` : save the review data from id 1(first row of column) and connect it with the book data.
-- **TINKER** - `$review = \App\Models\Review::with('book')->find(1);` : find the book and review in the first row data.
-- **TINKER** - `\App\Models\Book::where('title', 'LIKE', '%qui%')->get();` : to find particular title column with the 'LIKE' operator and the word 'qui' from - database.
-- **TINKER** - `\App\Models\Book::title('delectus')->get();` : a simpler way compared to the previous command after adding particular code in the model.
-- **TINKER** - `\App\Models\Book::title('delectus')->where('created_at', '>', '2023-01-01')->get();` : find the particular data where it was created from -3-01-01.
-- **TINKER** - `\App\Models\Book::title('delectus')->where('created_at', '>', '2023-01-01')->toSql;` : convert the ORM query into sql query.
-- **TINKER** - `\App\Models\Book::withCount('reviews')->get();` : add a new table column to count reviews in each data.
-- **TINKER** - `\App\Models\Book::withCount('reviews')->latest()->limit(3)->get();` : only show the top 3 recent data.
-- **TINKER** - `\App\Models\Book::limit(5)->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating')->get();` : to get the average rating of reviews for -h book with limit 5 data with the column name : reviews_avg_rating.
-- **TINKER** - `\App\Models\Book::limit(5)->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating')->toSql();` : to generate Sql query with limit 5 data.
-- **TINKER** - `\App\Models\Book::withCount('reviews')->withAvg('reviews', 'rating')->having('reviews_count', '>=', 10)->orderBy('reviews_avg_rating', 'desc')->limit(10)->get();` : count the reviews average that has the best rating and have at least 10 or more reviews with such amount in descending sort and limit the display in 10.
-- **TINKER** - `\App\Models\Book::withCount('reviews')->withAvg('reviews', 'rating')->having('reviews_count', '>=', 10)->orderBy('reviews_avg_rating', 'desc')->limit(10)->toSql();` : convert the code above into Sql query.
-- **TINKER** - `\App\Models\Book::popular()->highestRated()->get();` : to list the most popular book based on reviews and rating.
-- **TINKER** - `\App\Models\Book::highestRated()->get();` : list the all the book with from the highest rating
-- **TINKER** - `\App\Models\Book::highestRated('2023-02-01', '2023-03-30')->popular('2023-02-01', '2023-03-30')->minReviews(2)->get();` : list the top 2 reviews with the highest rating
-- **TINKER** - `$review = \App\Models\Review::findOrFail(944);` : find the review with Id 944. If it exists, it returns the Review instance, if it doesn't exist, it throws an error ModelNotFoundException
-- **TINKER** - `$review->rating = 4;` : change the rating of that review to 4
-- **TINKER** - `$review` : show again the review with id 944
-- **TINKER** - `$review->save();` : save the change
-- **TINKER** - `$review->update(['rating' => 1]);` : another way/code to change the rating
-- **TINKER** - `\App\Models\Review::where('id', 944)->update(['rating' => 2]);` : this code will be working on changing the data in database but will not change the data in web
 
 ## folder and file list detail : 
 
 - **app/Models**: Represents a table in the database and provides an interface to interact with it. It contains business logic and relationships.
-    - `Book.php` : creating interface to interact with book table.
-    - `Review.php` : creating interface to interact with review table.
+    - `Event.php` : creating interface to interact with Event table.
+    - `Attendee.php` : creating interface to interact with Attendee table.
 - **database/factories** : defining/generating model dummy data.
     - `BookFactory.php` :  generate and define the model of dummy data on book table.
     - `ReviewFactory.php` : generate and define the model of dummy data on review table.
@@ -90,6 +57,8 @@ This project will using some stacks as follows:
 - **database/seeders** : generate dummy data into the database.
     - `DatabaseSeeder.php` : seeds the database with fake/dummy data
 - `.env` : configuring database and connection.
+- **routes** : store all route definitions, including API routes
+    - **api.php** : defines routes specifically for API endpoints, such as RESTful routes for controllers. These routes are automatically assigned the "api" middleware group.
 - **resources/views** : this directory is functioning for view / interface
     - **/books** : this folder is used for the view of pages
         - `index.blade.php` : displaying home page
