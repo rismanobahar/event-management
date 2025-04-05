@@ -13,16 +13,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Primary key for the events table
 
-            $table->foreignIdFor(User::class);
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->foreignIdFor(User::class); // Foreign key for the user table
+            $table->string('name'); // Name of the event
+            $table->text('description')->nullable(); // Description of the event
 
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->dateTime('start_time'); // Start time of the event
+            $table->dateTime('end_time'); // End time of the event
 
-            $table->timestamps();
+            $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }
 

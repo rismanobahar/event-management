@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// This route will return the welcome view when the root URL is accessed
 Route::get('/', function () {
     return view('welcome');
 });

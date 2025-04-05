@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+// The following code is used to get the authenticated user
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('events', EventController::class);
+// The following code is used to define API routes for the Event and Attendee resources. the result can be found in php artisan route:list
+Route::apiResource('events', EventController::class); // Defines the API resource routes for the EventController. events means the route will be /api/events
 Route::apiResource('events.attendees', AttendeeController::class)
-        ->scoped(['attendee' => 'event']);
+        ->scoped(['attendee' => 'event']); // Defines the API resource routes for the AttendeeController. events.attendees means the route will be /api/events/{event}/attendees
+        // The scoped method is used to specify the route parameter name for the attendee resource. In this case, it is set to 'event', which means that the route will be /api/events/{event}/attendees/{attendee}. This allows you to access the attendees of a specific event.

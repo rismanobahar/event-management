@@ -5,11 +5,11 @@
 ## TECH STACK
 
 This project will using some stacks as follows:
-- **laravel** = 10.48.28
+- **laravel** = 10.48.29
 - **PHP** = 8.1.10
 - **database** = mySQL
 - **frontend** = laravel blade
-- **composer** = 2.8.1
+- **composer** = 2.8.6
 - **containerization** = Docker
 
 ## Installation Steps
@@ -46,19 +46,19 @@ This project will using some stacks as follows:
 ## folder and file list detail : 
 
 - **app/Models**: Represents a table in the database and provides an interface to interact with it. It contains business logic and relationships.
-    - `Event.php` : creating interface to interact with Event table.
-    - `Attendee.php` : creating interface to interact with Attendee table.
+    - [`Event.php`](/app/Models/Event.php) : creating interface to interact with Event table.
+    - [`Attendee.php`](/app/Models/Attendee.php) : creating interface to interact with Attendee table.
 - **database/factories** : defining/generating model dummy data.
     - `BookFactory.php` :  generate and define the model of dummy data on book table.
     - `ReviewFactory.php` : generate and define the model of dummy data on review table.
 - **database/migrations** : Defines the structure of a database table (columns, types, constraints). It is used to create, modify, or delete tables.
-    - `create_books_table.php` : define the db structure for books table.
-    - `create_reviews_table.php` : define the db structure for review table.
+    - [`create_events_table.php`](/database/migrations/2025_04_03_103429_create_events_table.php) : define the db structure for event table.
+    - [`create_attendees_table.php`](/database/migrations/2025_04_03_103448_create_attendees_table.php) : define the db structure for attendees table.
 - **database/seeders** : generate dummy data into the database.
     - `DatabaseSeeder.php` : seeds the database with fake/dummy data
 - `.env` : configuring database and connection.
 - **routes** : store all route definitions, including API routes
-    - **api.php** : defines routes specifically for API endpoints, such as RESTful routes for controllers. These routes are automatically assigned the "api" middleware group.
+    - [`api.php`](/routes/api.php) : defines routes specifically for API endpoints, such as RESTful routes for controllers. These routes are automatically assigned the "api" middleware group.
 - **resources/views** : this directory is functioning for view / interface
     - **/books** : this folder is used for the view of pages
         - `index.blade.php` : displaying home page
@@ -69,4 +69,7 @@ This project will using some stacks as follows:
         - `app.blade.php` : use this file to store all the styling configuration like Tailwind CSS
 - **/app/Providers** : store service provider classes.  Service providers are the central place where Laravel bootstraps and configures various parts of the application, such as binding services into the service container, registering event listeners, or defining route configurations.
     - `RouteServiceProvider.php` : define and configure how routes are loaded and managed in your application.
+- **/app/Http/Controllers/Api** : storing resource controller
+    - [`AttendeeController.php`](/app/Http/Controllers/Api/AttendeeController.php) :  
+    - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) :
 
