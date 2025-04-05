@@ -29,8 +29,9 @@ This project will using some stacks as follows:
 - `php artisan make:model Event -m` : to make a model file and migration file for Event.
 - `php artisan make:model Attendee -m` : to make a model file and migration file for Attendee.
 - `php artisan migrate` : to migrate the database table that has been defined in the migration file before.
-- `php artisan make:factory BookFactory --model` : Book = make a dummy data for book table.
-- `php artisan make:factory ReviewFactory --model` : Review = make a dummy data for review table.
+- `php artisan make:factory EventFactory --model=Event or php artisan make:factory EventFactory --model (which gives the same result)` : make a dummy data for event table.
+- `php artisan make:seeder EventSeeder` : Creates a seeder file named `EventSeeder` in the `database/seeders` directory. This file is used to define how dummy data for the `events` table will be inserted into the database.
+- `php artisan make:seeder AttendeeSeeder` : Creates a seeder file named `AttendeeSeeder` in the `database/seeders` directory. This file is used to define how dummy data for the `attendees` table will be inserted into the database.
 - `php artisan migrate:refresh --seed` : to insert the dummy data into database.
 - `php artisan tinker` : run powershell in CLI.
 - `php artisan make:controller Api/EventController --api` : create a resource controller in new Api folder for Event and methods needed for API
