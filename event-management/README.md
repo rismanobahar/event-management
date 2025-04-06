@@ -56,7 +56,9 @@ This project will using some stacks as follows:
     - [`create_events_table.php`](/database/migrations/2025_04_03_103429_create_events_table.php) : define the db structure for event table.
     - [`create_attendees_table.php`](/database/migrations/2025_04_03_103448_create_attendees_table.php) : define the db structure for attendees table.
 - **database/seeders** : generate dummy data into the database.
-    - `DatabaseSeeder.php` : seeds the database with fake/dummy data
+    - [`DatabaseSeeder.php`](/database/seeders/DatabaseSeeder.php) : seeds the database table with fake/dummy data
+    - [`AttendeeSeeder.php`](/database/seeders/AttendeeSeeder.php) : Seeds the `attendees` table with fake/dummy data by associating users with random events. Then, store the user id and event id as attendee
+    - [`EventSeeder.php`](/database/seeders/EventSeeder.php) : Seeds the `events` table with fake/dummy data, creating sample events for the application.
 - `.env` : configuring database and connection.
 - **routes** : store all route definitions, including API routes
     - [`api.php`](/routes/api.php) : defines routes specifically for API endpoints, such as RESTful routes for controllers. These routes are automatically assigned the "api" middleware group.
