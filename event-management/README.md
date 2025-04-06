@@ -1,10 +1,10 @@
 ## DESCRIPTION
 
-**This is a project about book review where there will be some books with review as comments and rating.**
+**This is a project about event management where there will be some user who have linked with some event. in each event the user will be marked as attendee**
 
 ## TECH STACK
 
-This project will using some stacks as follows:
+This project uses the following tech stack:
 - **laravel** = 10.48.29
 - **PHP** = 8.1.10
 - **database** = mySQL
@@ -15,7 +15,7 @@ This project will using some stacks as follows:
 ## Installation Steps
                                
 - `git clone https://github.com/rismanobahar/book-review-laravel.git`
-- `cd book-review`
+- `cd event-management`
 - `composer install`
 - `cp .env.example .env`
 - `php artisan key:generate`
