@@ -37,8 +37,7 @@ This project uses the following tech stack:
 - `php artisan make:controller Api/EventController --api` : create a resource controller in new Api folder for Event and methods needed for API
 - `php artisan make:controller Api/AttendeeController --api` : create a resource controller in new Api folder for Attendee and methods needed for API
 - `php artisan route:list` : list all of the route command
-- `php artisan make:component StarRating` : to create a component named star rating
-- `php artisan make:controller ReviewController --resource` : create a new resource controller for review
+
 
 ## Tinker Commands
 
