@@ -11,6 +11,8 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'start_time', 'end_time', 'user_id']; // Define the fillable attributes for mass assignment
+
     public function user(): BelongsTo // Define the relationship with the User model
     {
         return $this->belongsTo(User::class); // Assuming the foreign key in the events table is user_id that belongs to the users table
