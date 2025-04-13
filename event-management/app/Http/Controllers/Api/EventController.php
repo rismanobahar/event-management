@@ -30,6 +30,8 @@ class EventController extends Controller
             ]),
             'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
         ]);
+
+        return $event;
     }
 
     /**
@@ -43,16 +45,31 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        $event->update( // update the specified event
+            $request->validate([ // Validate the request data
+                'name' => 'sometimes|string|max:255', // Event name is required
+                'description' => 'nullable|string', // Event description is optional
+                'start_time' => 'sometimes|date', // Event start time is required and must be a valid date
+                'end_time' => 'sometimes|date|after:start_time' // Event end time is required, must be a valid date, and must be after the start time
+            ])
+        );
+
+        return $event; // Return the updated event
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete(); // Delete the specified event from the database
+
+        return response()->json([ // Return a JSON response
+            'message' => 'Event deleted successfully' // Return a success message
+        ]);
+
+        // return response(stats: 204); // Another way of response that return a 204 but with No Content response
     }
 }
