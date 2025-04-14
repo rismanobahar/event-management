@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all(); // Return all events from the database
+        // return Event::all(); // Return all events from the database
+        // return EventResource::collection(Event::all()); // Return all events from the database
+        return EventResource::collection(Event::with('user')->get()); // Return all events from the database with the user relationship
     }
 
     /**
@@ -31,7 +34,7 @@ class EventController extends Controller
             'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
         ]);
 
-        return $event;
+        return new EventResource($event); // Return the created event
     }
 
     /**
@@ -39,7 +42,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        return $event; // Return the specified event from the database
+        // return $event; // Return the specified event from the database
+        $event->load('user'); // Load the user relationship for the specified event
+        return new EventResource($event); // Return the specified event from the database
     }
 
     /**
@@ -56,7 +61,8 @@ class EventController extends Controller
             ])
         );
 
-        return $event; // Return the updated event
+        // return $event; // Return the updated event
+        return new EventResource($event); // Return the updated event
     }
 
     /**

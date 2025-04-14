@@ -37,6 +37,12 @@ This project uses the following tech stack:
 - `php artisan make:controller Api/EventController --api` : create a resource controller in new Api folder for Event and methods needed for API
 - `php artisan make:controller Api/AttendeeController --api` : create a resource controller in new Api folder for Attendee and methods needed for API
 - `php artisan route:list` : list all of the route command
+- `php artisan make:resource EventResource` : Creates a resource class named
+`EventResource` in the `App\Http\Resources` directory. This class is used to transform and format the `Event` model's data when returning it as a JSON response in APIs.
+- `php artisan make:resource UserResource` : Creates a resource class named
+`UserResource` in the `App\Http\Resources` directory. This class is used to transform and format the `User` model's data when returning it as a JSON response in APIs.
+- `php artisan make:resource AttendeeResource` : Creates a resource class named
+`AttendeeResource` in the `App\Http\Resources` directory. This class is used to transform and format the `Attendee` model's data when returning it as a JSON response in APIs.
 
 
 ## Tinker Commands
@@ -48,6 +54,7 @@ This project uses the following tech stack:
 - **app/Models**: Represents a table in the database and provides an interface to interact with it. It contains business logic and relationships.
     - [`Event.php`](/app/Models/Event.php) : creating interface to interact with Event table.
     - [`Attendee.php`](/app/Models/Attendee.php) : creating interface to interact with Attendee table.
+    - [`User.php`](/app/Models/User.php) : creating interface to interact with user table
 - **database/factories** : defining/generating model dummy data.
     - `BookFactory.php` :  generate and define the model of dummy data on book table.
     - `ReviewFactory.php` : generate and define the model of dummy data on review table.
@@ -68,10 +75,12 @@ This project uses the following tech stack:
     - **/components** : 
         - `star-rating.blade.php` : use this file to configure blade component for star rating in review 
     - **/layouts** : storing layout templates that define the overall structure of the application's views
-        - `app.blade.php` : use this file to store all the styling configuration like Tailwind CSS
+        - [`app.blade.php`](/resources/views/) : use this file to store all the styling configuration like Tailwind CSS
 - **/app/Providers** : store service provider classes.  Service providers are the central place where Laravel bootstraps and configures various parts of the application, such as binding services into the service container, registering event listeners, or defining route configurations.
-    - `RouteServiceProvider.php` : define and configure how routes are loaded and managed in your application.
+    - [`RouteServiceProvider.php`](/app/Providers/RouteServiceProvider.php) : define and configure how routes are loaded and managed in your application.
 - **/app/Http/Controllers/Api** : storing resource controller
-    - [`AttendeeController.php`](/app/Http/Controllers/Api/AttendeeController.php) :  
-    - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) :
+    - [`AttendeeController.php`](/app/Http/Controllers/Api/AttendeeController.php) :  an api for controlling attendee
+    - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) : an api for controlling event
+- **/app/Http/Resources** : 
+    - [`EventResource.php`](/app/Http/Resources/EventResource.php) : Transform and format the Event model data for API responses into JSON format. ensure consistency, security, and clarity in API responses. Can be used to displaying certain field from database to the Postman or frontend
 
