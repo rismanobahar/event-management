@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attendees', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Primary key for the attendees table
 
             $table->foreignIdFor(User::class); //used for generating a foreign key for the user table
             $table->foreignIdFor(Event::class); //used for generating a foreign key for the event table

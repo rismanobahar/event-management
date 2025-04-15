@@ -12,8 +12,10 @@ class UserResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+
+     // the following code is used to return only the fields that are needed
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return parent::toArray($request); // Return the user data as an array and returning all the fields
     }
 }

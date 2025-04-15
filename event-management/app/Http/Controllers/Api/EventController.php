@@ -30,7 +30,7 @@ class EventController extends Controller
                 'description' => 'nullable|string', // Event description is optional
                 'start_time' => 'required|date', // Event start time is required and must be a valid date
                 'end_time' => 'required|date|after:start_time' // Event end time is required, must be a valid date, and must be after the start time
-            ]),
+            ]), 
             'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
         ]);
 
@@ -43,7 +43,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         // return $event; // Return the specified event from the database
-        $event->load('user'); // Load the user relationship for the specified event
+        $event->load('user', 'attendees'); // Load the user relationship for the specified event
         return new EventResource($event); // Return the specified event from the database
     }
 

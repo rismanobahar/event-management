@@ -24,4 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('events', EventController::class); // Defines the API resource routes for the EventController. events means the route will be /api/events
 Route::apiResource('events.attendees', AttendeeController::class)
         ->scoped(['attendee' => 'event']); // Defines the API resource routes for the AttendeeController. events.attendees means the route will be /api/events/{event}/attendees
-        // The scoped method is used to specify the route parameter name for the attendee resource. In this case, it is set to 'event', which means that the route will be /api/events/{event}/attendees/{attendee}. This allows you to access the attendees of a specific event.
+        // The scoped method is used to specify the route parameter name for the attendee resource. In this case, it is set to 'event', which means that attendee belongs to event and the route will be /api/events/{event}/attendees/{attendee}. This allows you to access the attendees of a specific event.
