@@ -10,6 +10,8 @@ class Attendee extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id']; // Define the fillable attributes for mass assignment
+
     public function user(): BelongsTo // Define the relationship with the User model
     {
         return $this->belongsTo(User::class); // Assuming the foreign key in the attendees table is user_id that belongs to the users table

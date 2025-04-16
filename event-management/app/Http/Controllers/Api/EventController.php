@@ -16,7 +16,7 @@ class EventController extends Controller
     {
         // return Event::all(); // Return all events from the database
         // return EventResource::collection(Event::all()); // Return all events from the database
-        return EventResource::collection(Event::with('user')->get()); // Return all events from the database with the user relationship
+        return EventResource::collection(Event::with('user')->paginate()); // Return all events from the database with the user relationship
     }
 
     /**
@@ -39,6 +39,8 @@ class EventController extends Controller
 
     /**
      * Display the specified resource.
+     *  // why the syntax is different from the one in the index method? because in the index method we are
+     *  // using EventResource::collection() but in this method we are using new EventResource($event) because we are returning a single event not a collection of events
      */
     public function show(Event $event)
     {
