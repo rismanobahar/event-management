@@ -14,9 +14,18 @@ class EventController extends Controller
      */
     public function index()
     {
+        $this->shouldIncludeRelation('user'); // Check if the user relationship should be included in the response
         // return Event::all(); // Return all events from the database
         // return EventResource::collection(Event::all()); // Return all events from the database
         return EventResource::collection(Event::with('user')->paginate()); // Return all events from the database with the user relationship
+    }
+
+    // the following method is used to check if the user relationship should be included in the response
+    protected function shouldIncludeRelation(string $relation): bool
+    {
+        $include = request()->query('include'); // Get the 'include' query parameter from the request
+
+        dd($include); // Dump and die the 'include' query parameter
     }
 
     /**
