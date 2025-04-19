@@ -83,4 +83,6 @@ This project uses the following tech stack:
     - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) : an api for controlling event
 - **/app/Http/Resources** : 
     - [`EventResource.php`](/app/Http/Resources/EventResource.php) : Transform and format the Event model data for API responses into JSON format. ensure consistency, security, and clarity in API responses. Can be used to displaying certain field from database to the Postman or frontend
+- **/app/Http/Traits** : 
+    - [`CanLoadRelationships.php`](/app/Http/Traits/CanLoadRelationships.php) : A reusable trait that provides functionality to dynamically load relationships for models based on query parameters, ensuring flexibility and reducing repetitive code in controllers. 
 

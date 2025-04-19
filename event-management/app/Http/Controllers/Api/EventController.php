@@ -43,29 +43,30 @@ class EventController extends Controller
     * so basically this method checks if the 'include' query parameter is present in the request and if it contains the specified relation.
     * for example if the request is /api/events?include=user, it will return true for the user relation.
     * if the request is /api/events?include=user,attendees it will return true for both user and attendees relations.
-    *  if the request is /api/events?include=user,attendees.attendees.user it will return true for both user, attendees, and attendees.user relations.
+    * if the request is /api/events?include=user,attendees.attendees.user it will return true for both user, attendees, and attendees.user relations.
+    * the code is moved to CanLoadRelationship.php trait file to be reused in other controllers.
     */
     
-    protected function shouldIncludeRelation(string $relation): bool
-    {
-        $include = request()->query('include'); // Get the 'include' query parameter from the request
+    // protected function shouldIncludeRelation(string $relation): bool
+    // {
+    //     $include = request()->query('include'); // Get the 'include' query parameter from the request
 
-        if (!$include) {
-            return false; // If the 'include' parameter is not present, return false
-        }
+    //     if (!$include) {
+    //         return false; // If the 'include' parameter is not present, return false
+    //     }
 
-        // $relations = explode(',', $include); // Split the 'include' parameter by commas
-        $relations = array_map('trim', explode(',', $include)); // Split the 'include' parameter by commas and trim whitespace if the endpoint is a string with spaces
+    //     // $relations = explode(',', $include); // Split the 'include' parameter by commas
+    //     $relations = array_map('trim', explode(',', $include)); // Split the 'include' parameter by commas and trim whitespace if the endpoint is a string with spaces
 
-        // dd($include); // Debugging line to check the include parameter
-        // dd($relations); // Debugging line to check the relations and turn it into an array
+    //     // dd($include); // Debugging line to check the include parameter
+    //     // dd($relations); // Debugging line to check the relations and turn it into an array
        
-        /* after there is a trim function to remove the spaces, we can
-           use the following line to check if the relation is in the array of
-           relations, not using dd anymore */
+    //     /* after there is a trim function to remove the spaces, we can
+    //        use the following line to check if the relation is in the array of
+    //        relations, not using dd anymore */
         
-        return in_array($relation, $relations); // Check if the specified relation is in the array of relations
-    }
+    //     return in_array($relation, $relations); // Check if the specified relation is in the array of relations
+    // }
 
     /**
      * Store a newly created resource in storage.
