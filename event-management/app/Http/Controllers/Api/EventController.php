@@ -4,25 +4,31 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EventResource;
+use App\Http\Traits\CanLoadRelationships;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    use CanLoadRelationships; // Use the CanLoadRelationships trait to load relationships dynamically
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $query = Event::query(); // Create a query builder instance for the Event model
-        $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded
+        $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded. it is moved above 
+        $query = $this->loadRelationships(Event::query());
 
-        foreach ($relations as $relation){
-            $query->when( 
-                $this->shouldIncludeRelation($relation), // Check if the relationship should be included
-                fn($q) => $q->with($relation) // Eager load the relationship
-            );
-        }
+        /** the following code is deleted because it is moved to the CanLoadRelationships trait file
+         * and the loadRelationships method is used to load the relationships dynamically
+         */
+        // foreach ($relations as $relation){
+        //     $query->when( 
+        //         $this->shouldIncludeRelation($relation), // Check if the relationship should be included
+        //         fn($q) => $q->with($relation) // Eager load the relationship
+        //     );
+        // }
 
         /* the following code check if the user relationship should be included in the response.
          this code is only used to test the function */
