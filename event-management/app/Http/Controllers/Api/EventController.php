@@ -11,14 +11,18 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     use CanLoadRelationships; // Use the CanLoadRelationships trait to load relationships dynamically
+    private array $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded. it is moved above 
-        $query = $this->loadRelationships(Event::query());
+        /**The below code is moved as global variable */
+        // $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded. it is moved above 
+        /** the $relations is removed because it already has a global variable */
+        // $query = $this->loadRelationships(Event::query(), $relations); // Load the relationships dynamically using the CanLoadRelationships trait
+        $query = $this->loadRelationships(Event::query()); // Load the relationships dynamically using the CanLoadRelationships trait 
 
         /** the following code is deleted because it is moved to the CanLoadRelationships trait file
          * and the loadRelationships method is used to load the relationships dynamically
@@ -88,8 +92,8 @@ class EventController extends Controller
             ]),
             'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
         ]);
-
-        return new EventResource($event); // Return the created event
+        // return new EventResource($event); // Return the created event
+        return new EventResource($this->loadRelationships($event)); // Return the created event
     }
 
     /**
@@ -100,8 +104,9 @@ class EventController extends Controller
     public function show(Event $event)
     {
         // return $event; // Return the specified event from the database
-        $event->load('user', 'attendees'); // Load the user relationship for the specified event
-        return new EventResource($event); // Return the specified event from the database
+        // $event->load('user', 'attendees'); // Load the user relationship for the specified event
+        // return new EventResource($event); // Return the specified event from the database with the user relationship
+        return new EventResource($this->loadRelationships($event)); // Return the specified event from the database with the user relationship
     }
 
     /**
@@ -119,7 +124,9 @@ class EventController extends Controller
         );
 
         // return $event; // Return the updated event
-        return new EventResource($event); // Return the updated event
+        // return new EventResource($event); // Return the updated event
+        // return new EventResource($event); // Return the updated event
+        return new EventResource($this->loadRelationships($event)); // Return the updated event
     }
 
     /**

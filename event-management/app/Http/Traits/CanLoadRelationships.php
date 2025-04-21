@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 trait CanLoadRelationships{
     public function loadRelationships(
         Model|QueryBuilder|EloquentBuilder $for,
-        ?array $relations
+        ?array $relations = null // Allow passing an array of relations to be loaded, or use the class property if not provided
     ): Model|QueryBuilder|EloquentBuilder {
         $relations = $relations ?? $this->relations ?? []; // Get the relations from the class property or use an empty array if not set
 
         foreach ($relations as $relation) {
             $for->when(
                 $this->shouldIncludeRelation($relation), // Check if the relationship should be included
-                fn($q) => $for instanceof Model ? $q->load($relation) : $q->with($relation) // Eager load the relationship
+                fn($q) => $for instanceof Model ? $for->load($relation) : $q->with($relation) // Eager load the relationship. $q->load($relation) is changed to $for->load($relation) to load the relationship on the model instance 
             );
         }
 

@@ -1,0 +1,2 @@
+1. Understand completely how relation loading(video 67) and relation loading trait work(video 68)
+
