@@ -24,6 +24,8 @@ This project uses the following tech stack:
 
 ## Command Line List Detail
 
+- `composer --version` : check the php and composer version
+- `php artisan --version` : check the laravel version
 - `composer create-project --prefer-dist laravel/laravel book-review` : create the book-review project.
 - `code .` : to open the project folder separately.
 - `php artisan make:model Event -m` : to make a model file and migration file for Event.
@@ -43,6 +45,8 @@ This project uses the following tech stack:
 `UserResource` in the `App\Http\Resources` directory. This class is used to transform and format the `User` model's data when returning it as a JSON response in APIs.
 - `php artisan make:resource AttendeeResource` : Creates a resource class named
 `AttendeeResource` in the `App\Http\Resources` directory. This class is used to transform and format the `Attendee` model's data when returning it as a JSON response in APIs.
+- `php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider` : Publishes the configuration file and migration files for Laravel Sanctum. This command is used to set up Sanctum, which provides a simple way to authenticate single-page applications (SPAs), mobile applications, and simple token-based APIs.
+- `php artisan make:controller Api/AuthController` : make a controller file for authentication
 
 
 ## Tinker Commands
@@ -79,10 +83,11 @@ This project uses the following tech stack:
 - **/app/Providers** : store service provider classes.  Service providers are the central place where Laravel bootstraps and configures various parts of the application, such as binding services into the service container, registering event listeners, or defining route configurations.
     - [`RouteServiceProvider.php`](/app/Providers/RouteServiceProvider.php) : define and configure how routes are loaded and managed in your application.
 - **/app/Http/Controllers/Api** : storing resource controller
-    - [`AttendeeController.php`](/app/Http/Controllers/Api/AttendeeController.php) :  an api for controlling attendee
-    - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) : an api for controlling event
+    - [`AttendeeController.php`](/app/Http/Controllers/Api/AttendeeController.php) :  an api for controlling attendee.
+    - [`EventController.php`](/app/Http/Controllers/Api/EventController.php) : an api for controlling event.
+    - [`AuthController.php`](/app/Http/Controllers/Api/AuthController.php) : an api for controlling authentication.
 - **/app/Http/Resources** : 
-    - [`EventResource.php`](/app/Http/Resources/EventResource.php) : Transform and format the Event model data for API responses into JSON format. ensure consistency, security, and clarity in API responses. Can be used to displaying certain field from database to the Postman or frontend
+    - [`EventResource.php`](/app/Http/Resources/EventResource.php) : Transform and format the Event model data for API responses into JSON format. ensure consistency, security, and clarity in API responses. Can be used to displaying certain field from database to the Postman or frontend.
 - **/app/Http/Traits** : 
     - [`CanLoadRelationships.php`](/app/Http/Traits/CanLoadRelationships.php) : A reusable trait that provides functionality to dynamically load relationships for models based on query parameters, ensuring flexibility and reducing repetitive code in controllers. 
 

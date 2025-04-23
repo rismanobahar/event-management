@@ -1,2 +1,2 @@
-1. Understand completely how relation loading(video 67) and relation loading trait work(video 68)
+1. Understand completely how relation loading(video 67), relation loading trait work(video 68), Loading Attendee Relations(video 69)
 
