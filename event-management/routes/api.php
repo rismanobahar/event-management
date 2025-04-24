@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AttendeeController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/login', [AuthController::class, 'login']); // Defines the login route. The AuthController is used to handle the login request. The route will be /api/login
 
 // The following code is used to define API routes for the Event and Attendee resources. the result can be found in php artisan route:list
 Route::apiResource('events', EventController::class); // Defines the API resource routes for the EventController. events means the route will be /api/events
