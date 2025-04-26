@@ -13,6 +13,9 @@ class EventController extends Controller
     use CanLoadRelationships; // Use the CanLoadRelationships trait to load relationships dynamically
     private array $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded
 
+    public function __construct(){
+        $this->middleware('auth:sanctum')->except(['index', 'show']); // Apply the auth middleware to all methods except index and show
+    }
     /**
      * Display a listing of the resource.
      */
@@ -106,7 +109,9 @@ class EventController extends Controller
         // return $event; // Return the specified event from the database
         // $event->load('user', 'attendees'); // Load the user relationship for the specified event
         // return new EventResource($event); // Return the specified event from the database with the user relationship
-        return new EventResource($this->loadRelationships($event)); // Return the specified event from the database with the user relationship
+        return new EventResource(
+            $this->loadRelationships($event)
+        ); // Return the specified event from the database with the user relationship
     }
 
     /**
