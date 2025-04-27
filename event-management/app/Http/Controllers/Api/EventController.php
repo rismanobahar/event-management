@@ -93,7 +93,8 @@ class EventController extends Controller
                 'start_time' => 'required|date', // Event start time is required and must be a valid date
                 'end_time' => 'required|date|after:start_time' // Event end time is required, must be a valid date, and must be after the start time
             ]),
-            'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
+            // 'user_id' => 1 // User ID is hardcoded for now, 1 means that this will be the first user
+            'user_id' => $request->user()->id // Get the authenticated user's ID
         ]);
         // return new EventResource($event); // Return the created event
         return new EventResource($this->loadRelationships($event)); // Return the created event
