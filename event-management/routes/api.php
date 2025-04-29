@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [AuthController::class, 'login']); // Defines the login route. The AuthController is used to handle the login request. The route will be /api/login
+Route::post('/logout', [AuthController::class, 'logout'])
+            ->middleware('auth:sanctum'); // Defines the logout route. The AuthController is used to handle the logout request. The route will be /api/logout. the middleware 'auth:sanctum' is used to protect the route. This means that the user must be authenticated to access the route.
 
 // The following code is used to define API routes for the Event and Attendee resources. the result can be found in php artisan route:list
 Route::apiResource('events', EventController::class); // Defines the API resource routes for the EventController. events means the route will be /api/events

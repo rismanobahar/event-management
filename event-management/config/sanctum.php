@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'expiration' => null,
+    'expiration' => 10, // The expiration time for the token in minutes. This means that the token will expire after 10 minutes. This is used to protect the API from unauthorized access. The default value is 60 minutes.
 
     /*
     |--------------------------------------------------------------------------
