@@ -22,8 +22,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('update-event', function ($user, Event $event) {
-            return $user->id === $event->user_id;
+        Gate::define('update-event', function ($user, Event $event) { // Check if the user is the owner of the event
+            return $user->id === $event->user_id; // Assuming the event has a user_id field
         });
     }
 }

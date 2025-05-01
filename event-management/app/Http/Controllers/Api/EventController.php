@@ -7,6 +7,7 @@ use App\Http\Resources\EventResource;
 use App\Http\Traits\CanLoadRelationships;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EventController extends Controller
 {
@@ -120,6 +121,14 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        /* the following code is used to check if the user is authorized to update the event. */
+        // if (Gate::denies('update-event', $event)){ // Check if the user is authorized to update the event
+        //     abort(403, 'You are not authorized to update this event.'); // If not authorized, return a 403 Forbidden response
+        // }
+
+        /* the following code is used to check if the user is authorized to update the event. */
+        $this->authorize('update-event', $event); // Authorize the user to update the event
+
         $event->update( // update the specified event
             $request->validate([ // Validate the request data
                 'name' => 'sometimes|string|max:255', // Event name is required
