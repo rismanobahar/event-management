@@ -4,12 +4,21 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AttendeeResource;
+use App\Http\Traits\CanLoadRelationships;
 use App\Models\Attendee;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
 class AttendeeController extends Controller
 {
+    use CanLoadRelationships; // Use the CanLoadRelationships trait to load relationships dynamically
+
+    private array $relations = ['user']; // Define the relationships to be eager loaded
+
+    public function __construct(){
+        $this->middleware('auth:sanctum')->except(['index', 'show', 'update']); // Apply the auth middleware to all methods except index and show
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -55,6 +64,7 @@ class AttendeeController extends Controller
      */
     public function destroy(Event $event, Attendee $attendee)
     {
+        $this->authorize('delete-attendee', [$event, $attendee]); // Authorize the user to delete the attendee
         $attendee->delete(); // Delete the specified attendee
         
         return response(status: 204); // Return a 204 No Content response

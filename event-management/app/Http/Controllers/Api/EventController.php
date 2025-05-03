@@ -17,6 +17,7 @@ class EventController extends Controller
     public function __construct(){
         $this->middleware('auth:sanctum')->except(['index', 'show']); // Apply the auth middleware to all methods except index and show
     }
+    
     /**
      * Display a listing of the resource.
      */
@@ -126,7 +127,7 @@ class EventController extends Controller
         //     abort(403, 'You are not authorized to update this event.'); // If not authorized, return a 403 Forbidden response
         // }
 
-        /* the following code is used to check if the user is authorized to update the event. */
+        /* the following code is the simpler way and used to check if the user is authorized to update the event. */
         $this->authorize('update-event', $event); // Authorize the user to update the event
 
         $event->update( // update the specified event
