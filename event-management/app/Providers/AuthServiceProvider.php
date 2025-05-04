@@ -23,6 +23,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        /* Gate is a simple way to define authorization logic in your application.
+        * Gates are similar to policies, but they are not associated with a specific model.
+        * Gates are typically defined in the AuthServiceProvider class and can be used to authorize actions based on any condition.
+        * Gates are defined using the Gate::define method, which takes a name and a closure as arguments.
+        * The closure receives the authenticated user and any additional parameters needed to determine if the action is authorized.
+        * The closure should return true if the action is authorized, or false if it is not.
+        * Gates are typically used for actions that are not tied to a specific model, such as creating or deleting resources.
+        * Gates can be used in controllers, views, and anywhere else in your application where you need to check if a user is authorized to perform an action. */
+
         Gate::define('update-event', function ($user, Event $event) { // Check if the user is the owner of the event
             return $user->id === $event->user_id; // Assuming the event has a user_id field
         });
