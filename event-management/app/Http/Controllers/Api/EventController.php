@@ -15,7 +15,8 @@ class EventController extends Controller
     private array $relations = ['user', 'attendees', 'attendees.user']; // Define the relationships to be eager loaded
 
     public function __construct(){
-        $this->middleware('auth:sanctum')->except(['index', 'show']); // Apply the auth middleware to all methods except index and show
+        $this->middleware('auth:sanctum')->except(['index', 'show']); // Apply the auth middleware to all methods except index and show.
+        $this->authorizeResource(Event::class, 'event'); // Authorize the resource using the Event model and the event policy
     }
     
     /**
