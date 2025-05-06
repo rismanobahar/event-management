@@ -128,8 +128,10 @@ class EventController extends Controller
         //     abort(403, 'You are not authorized to update this event.'); // If not authorized, return a 403 Forbidden response
         // }
 
-        /* the following code is the simpler way and used to check if the user is authorized to update the event. */
-        $this->authorize('update-event', $event); // Authorize the user to update the event
+        /** the following code is the simpler way and used to check if the user is authorized to update the event. 
+         * it is no longer needed because we are using the authorizeResource method in the constructor and using policy
+        */
+        // $this->authorize('update-event', $event); // Authorize the user to update the event
 
         $event->update( // update the specified event
             $request->validate([ // Validate the request data

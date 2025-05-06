@@ -17,6 +17,7 @@ class AttendeeController extends Controller
 
     public function __construct(){
         $this->middleware('auth:sanctum')->except(['index', 'show', 'update']); // Apply the auth middleware to all methods except index and show
+        $this->authorizeResource(Attendee::class, 'attendee'); // Authorize the resource using the Attendee model and the attendee policy
     }
 
     /**
@@ -64,7 +65,11 @@ class AttendeeController extends Controller
      */
     public function destroy(Event $event, Attendee $attendee)
     {
-        $this->authorize('delete-attendee', [$event, $attendee]); // Authorize the user to delete the attendee
+        /* we are no longer need authorization here because we already have a policy for the Attendee model
+         * and we are using the authorizeResource method in the constructor to authorize the resource
+         * so we can remove the authorization here.
+         */
+        // $this->authorize('delete-attendee', [$event, $attendee]); // Authorize the user to delete the attendee
         $attendee->delete(); // Delete the specified attendee
         
         return response(status: 204); // Return a 204 No Content response

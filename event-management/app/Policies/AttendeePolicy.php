@@ -11,17 +11,17 @@ class AttendeePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
-        //
+        return true; // Allow all users to view attendees
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Attendee $attendee): bool
+    public function view(?User $user, Attendee $attendee): bool
     {
-        //
+        return true; // Allow all users to view attendees
     }
 
     /**
@@ -29,15 +29,7 @@ class AttendeePolicy
      */
     public function create(User $user): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Attendee $attendee): bool
-    {
-        //
+        return true; // Allow all authenticated users to create attendees
     }
 
     /**
@@ -45,7 +37,8 @@ class AttendeePolicy
      */
     public function delete(User $user, Attendee $attendee): bool
     {
-        //
+        return $user->id === $attendee->event->user_id || 
+        $user->id === $attendee->user_id; // Check if the user is the owner of the event or the attendee
     }
 
     /**
