@@ -49,6 +49,7 @@ This project uses the following tech stack:
 - `php artisan make:controller Api/AuthController` : make a controller file for authentication
 - `php artisan make:policy EventPolicy --model=Event` : Creates a policy class named `EventPolicy` in the `App\Policies` directory. This class is used to define authorization logic for the `Event` model, allowing you to control access to specific actions (e.g., view, update, delete) based on user roles or permissions.
 - `php artisan make:policy AttendeePolicy --model=Attendee` : Creates a policy class named `AttendeePolicy` in the `App\Policies` directory. This class is used to define authorization logic for the `Attendee` model, allowing you to control access to specific actions (e.g., view, update, delete) based on user roles or permissions.
+- `php artisan make:command SendEventReminders` : 
 
 
 ## Tinker Commands
