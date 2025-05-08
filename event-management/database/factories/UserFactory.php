@@ -24,11 +24,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'name' => fake()->name(), // Name of the user
+            'email' => fake()->unique()->safeEmail(), // Unique email address of the user
+            'email_verified_at' => now(), // Timestamp when the email was verified
+            'password' => static::$password ??= Hash::make('password'), // Password of the user, hashed using Hash facade. meaning the password is stored in a hashed format for security
+            'remember_token' => Str::random(10), // Random token used for "remember me" functionality
         ];
     }
 

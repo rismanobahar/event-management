@@ -49,7 +49,8 @@ This project uses the following tech stack:
 - `php artisan make:controller Api/AuthController` : make a controller file for authentication
 - `php artisan make:policy EventPolicy --model=Event` : Creates a policy class named `EventPolicy` in the `App\Policies` directory. This class is used to define authorization logic for the `Event` model, allowing you to control access to specific actions (e.g., view, update, delete) based on user roles or permissions.
 - `php artisan make:policy AttendeePolicy --model=Attendee` : Creates a policy class named `AttendeePolicy` in the `App\Policies` directory. This class is used to define authorization logic for the `Attendee` model, allowing you to control access to specific actions (e.g., view, update, delete) based on user roles or permissions.
-- `php artisan make:command SendEventReminders` : 
+- `php artisan make:command SendEventReminders` : Creates a custom Artisan command named `SendEventReminders` in the `App\Console\Commands` directory. This command can be used to define logic for sending event reminders, such as notifying users about upcoming events via email or other channels.
+- `php artisan app:send-event-reminders`: Executes the custom Artisan command `SendEventReminders`, which is used to send reminders for upcoming events to users via email or other notification channels.
 
 
 ## Tinker Commands
@@ -58,6 +59,9 @@ This project uses the following tech stack:
 
 ## folder and file list detail : 
 
+- **app/Console/**: Contains custom Artisan commands for the application.
+    - **Commands**: Stores the logic for custom Artisan commands.
+        - [`SendEventReminders.php`](/app/Console/Commands/SendEventReminders.php): Defines the logic for sending event reminders, such as notifying users about upcoming events via email or other channels. This command can be executed using Artisan.
 - **app/Models**: Represents a table in the database and provides an interface to interact with it. It contains business logic and relationships.
     - [`Event.php`](/app/Models/Event.php) : creating interface to interact with Event table.
     - [`Attendee.php`](/app/Models/Attendee.php) : creating interface to interact with Attendee table.
