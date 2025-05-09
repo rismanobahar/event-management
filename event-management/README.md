@@ -52,11 +52,6 @@ This project uses the following tech stack:
 - `php artisan make:command SendEventReminders` : Creates a custom Artisan command named `SendEventReminders` in the `App\Console\Commands` directory. This command can be used to define logic for sending event reminders, such as notifying users about upcoming events via email or other channels.
 - `php artisan app:send-event-reminders`: Executes the custom Artisan command `SendEventReminders`, which is used to send reminders for upcoming events to users via email or other notification channels.
 
-
-## Tinker Commands
-
-- **TINKER** - `$books = \App\Models\Book::with('reviews')->find(1);` : to create a variable called boon and then find certain book and review.
-
 ## folder and file list detail : 
 
 - **app/Console/**: Contains custom Artisan commands for the application.
