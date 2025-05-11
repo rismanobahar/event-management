@@ -94,5 +94,7 @@ This project uses the following tech stack:
     - [`CanLoadRelationships.php`](/app/Http/Traits/CanLoadRelationships.php) : A reusable trait that provides functionality to dynamically load relationships for models based on query parameters, ensuring flexibility and reducing repetitive code in controllers. 
 - **/app/Providers/** :
     - [`AuthServiceProvider.php`](/app/Providers/AuthServiceProvider.php) : A service provider that defines and registers authentication-related services, such as policies and gates, to control access to various parts of the application.
+- **/app/Console/** :
+    - [`Kernel.php`](/app/Console/Kernel.php) : Manages the scheduling of tasks and the registration of custom Artisan commands for the application. It defines how and when scheduled tasks should run and ensures that custom commands are properly loaded.
 - **/config/** : 
     - [`config.php`](/config/sanctum.php) : Contains configuration settings for Laravel Sanctum, such as token expiration, middleware, and other options for managing API authentication and token-based security.
