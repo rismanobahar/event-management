@@ -51,6 +51,7 @@ This project uses the following tech stack:
 - `php artisan make:policy AttendeePolicy --model=Attendee` : Creates a policy class named `AttendeePolicy` in the `App\Policies` directory. This class is used to define authorization logic for the `Attendee` model, allowing you to control access to specific actions (e.g., view, update, delete) based on user roles or permissions.
 - `php artisan make:command SendEventReminders` : Creates a custom Artisan command named `SendEventReminders` in the `App\Console\Commands` directory. This command can be used to define logic for sending event reminders, such as notifying users about upcoming events via email or other channels.
 - `php artisan app:send-event-reminders`: Executes the custom Artisan command `SendEventReminders`, which is used to send reminders for upcoming events to users via email or other notification channels.
+- `php artisan schedule:work` : Starts a worker process that continuously runs scheduled tasks defined in the `schedule` method of the `App\Console\Kernel` class. This is useful for running tasks without relying on a cron job.
 
 ## folder and file list detail : 
 
