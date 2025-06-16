@@ -54,6 +54,7 @@ This project uses the following tech stack:
 - `php artisan schedule:work` : Starts a worker process that continuously runs scheduled tasks defined in the `schedule` method of the `App\Console\Kernel` class. This is useful for running tasks without relying on a cron job.
 - `php artisan make:notification EventReminderNotification` : Creates a notification class named - `EventReminderNotification` in the `App\Notifications` directory. This class can be used to define how event reminder notifications are sent to users, such as via email, SMS, or other channels.
 - `php artisan queue:table` : Generates a migration file for the jobs database table, which is used by Laravel's queue system to store queued jobs. This is necessary if you want to use database-backed queues for handling background tasks.
+- `php artisan queue:work` : Starts processing jobs from the queue, allowing queued tasks (such as sending emails or notifications) to be executed in the background as workers pick them up.
 
 ## folder and file list detail : 
 
