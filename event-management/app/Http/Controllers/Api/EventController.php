@@ -16,6 +16,9 @@ class EventController extends Controller
 
     public function __construct(){
         $this->middleware('auth:sanctum')->except(['index', 'show']); // Apply the auth middleware to all methods except index and show.
+        // $this->middleware('throttle:60,1') //this was before using api
+        $this->middleware('throttle:api') // this is after using api from RouteServiceProvider.php 
+        ->only(['store', 'update', 'destroy']); // Apply the throttle middleware to the store and destroy methods, allowing 60 requests per minute
         $this->authorizeResource(Event::class, 'event'); // Authorize the resource using the Event model and the event policy
     }
     

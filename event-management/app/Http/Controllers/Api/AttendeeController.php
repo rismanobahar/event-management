@@ -17,7 +17,9 @@ class AttendeeController extends Controller
 
     public function __construct(){
         $this->middleware('auth:sanctum')->except(['index', 'show', 'update']); // Apply the auth middleware to all methods except index and show
-        $this->middleware('throttle');
+        // $this->middleware('throttle:60,1')//this was before using api
+        $this->middleware('throttle:60,1') // this is after using api from RouteServiceProvider.php
+        ->only(['store', 'destroy']); // Apply the throttle middleware to the store and destroy methods, allowing 60 requests per minute
         $this->authorizeResource(Attendee::class, 'attendee'); // Authorize the resource using the Attendee model and the attendee policy
     }
 
